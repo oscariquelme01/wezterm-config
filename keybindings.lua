@@ -10,40 +10,40 @@ function M.apply(config)
 		-- Split vertically
 		{
 			key = "v",
-			mods = mod,
+			mods = mod  .. "|ALT",
 			action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 		},
 		-- Split horizontally (I know, names are backward)
 		{
 			key = "x",
-			mods = mod,
+			mods = mod .. "|ALT",
 			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 		},
 		-- h,j,k,l to navigate panes
-		{
-			key = "h",
-			mods = mod,
-			action = wezterm.action.ActivatePaneDirection("Left"),
-		},
-		{
-			key = "j",
-			mods = mod,
-			action = wezterm.action.ActivatePaneDirection("Down"),
-		},
-		{
-			key = "k",
-			mods = mod,
-			action = wezterm.action.ActivatePaneDirection("Up"),
-		},
-		{
-			key = "l",
-			mods = mod,
-			action = wezterm.action.ActivatePaneDirection("Right"),
-		},
+		-- {
+		-- 	key = "h",
+		-- 	mods = mod,
+		-- 	action = wezterm.action.ActivatePaneDirection("Left"),
+		-- },
+		-- {
+		-- 	key = "j",
+		-- 	mods = mod,
+		-- 	action = wezterm.action.ActivatePaneDirection("Down"),
+		-- },
+		-- {
+		-- 	key = "k",
+		-- 	mods = mod,
+		-- 	action = wezterm.action.ActivatePaneDirection("Up"),
+		-- },
+		-- {
+		-- 	key = "l",
+		-- 	mods = mod,
+		-- 	action = wezterm.action.ActivatePaneDirection("Right"),
+		-- },
 		-- Create a new workspace
 		{
 			key = "w",
-			mods = mod .. "|SHIFT",
+			mods = mod .. "|ALT",
 			action = wezterm.action.PromptInputLine({
 				description = "Enter name for new workspace",
 				action = wezterm.action_callback(function(window, pane, line)
@@ -55,7 +55,7 @@ function M.apply(config)
 		},
 		{
 			key = "t",
-			mods = mod .. "|SHIFT",
+			mods = mod .. "|ALT",
 			action = wezterm.action.PromptInputLine({
 				description = "Enter new tab name",
 				action = wezterm.action_callback(function(window, pane, line)
@@ -75,13 +75,20 @@ function M.apply(config)
 		{
 			key = "c",
 			mods = mod,
-			action = wezterm.action.ActivateCopyMode
+			action = wezterm.action.ActivateCopyMode,
 		},
+		-- Enter quick select mode
 		{
 			key = "z",
 			mods = mod,
-			action = wezterm.action.QuickSelect
-		}
+			action = wezterm.action.QuickSelect,
+		},
+		-- Redo: forward as Ctrl+r to Neovim
+		{
+			key = "r",
+			mods = mod,
+			action = wezterm.action.SendKey({ key = "r", mods = "CTRL" }),
+		},
 	}
 end
 

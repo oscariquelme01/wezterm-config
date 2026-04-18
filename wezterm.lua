@@ -11,5 +11,6 @@ require("keybindings").apply(config)
 require("plugins.bar").apply(config)
 require("plugins.resurrect").apply(config)
 require("plugins.smart_workspace_switcher").apply(config)
+require("plugins.navigator").apply(config)
 
 return config
