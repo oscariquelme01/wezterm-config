@@ -60,7 +60,7 @@ function M.apply(config)
 		},
 		{
 			key = "t",
-			mods = "CMD|ALT",
+			mods = "CMD|SHIFT",
 			action = wezterm.action.PromptInputLine({
 				description = "Enter new tab name",
 				action = wezterm.action_callback(function(window, pane, line)
@@ -70,19 +70,7 @@ function M.apply(config)
 				end),
 			}),
 		},
-		-- Press Ctrl+Shift+Alt+W to rename the current workspace
-		{
-			key = "w",
-			mods = "CMD|ALT",
-			action = wezterm.action.PromptInputLine({
-				description = "Enter new workspace name",
-				action = wezterm.action_callback(function(window, pane, line)
-					if line then
-						wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
-					end
-				end),
-			}),
-		},
+		-- Rename paste to CMD + p
 		{
 			key = "p",
 			mods = "CMD",
