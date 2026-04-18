@@ -9,7 +9,7 @@ function M.apply(config)
 	utils.add_keys(config, {
 		{
 			key = "s",
-			mods = "CMD",
+			mods = utils.mod,
 			action = workspace_switcher.switch_workspace(),
 		},
 	})

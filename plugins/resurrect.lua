@@ -18,6 +18,7 @@ wezterm.on("smart_workspace_switcher.workspace_switcher.created", function(windo
 		window = window,
 		relative = true,
 		restore_text = true,
+		resize_window = false,
 		on_pane_restore = on_pane_restore,
 	})
 end)
@@ -33,7 +34,7 @@ function M.apply(config)
 	utils.add_keys(config, {
 		{
 			key = "s",
-			mods = "CMD|SHIFT",
+			mods = utils.mod .. "|SHIFT",
 			action = wezterm.action_callback(function(win, pane)
 				local ws = wezterm.mux.get_active_workspace()
 				wezterm.log_info("resurrect: manually saving workspace " .. ws)
@@ -43,7 +44,7 @@ function M.apply(config)
 		},
 		{
 			key = "r",
-			mods = "CMD|SHIFT",
+			mods = utils.mod .. "|SHIFT",
 			action = wezterm.action_callback(function(win, pane)
 				resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)
 					local type = string.match(id, "^([^/]+)")
@@ -67,6 +68,7 @@ function M.apply(config)
 								window = mux_win,
 								relative = true,
 								restore_text = true,
+								resize_window = false,
 								on_pane_restore = on_pane_restore,
 							})
 						end)
@@ -90,7 +92,7 @@ function M.apply(config)
 		},
 		{
 			key = "d",
-			mods = "CMD|SHIFT",
+			mods = utils.mod .. "|SHIFT",
 			action = wezterm.action_callback(function(win, pane)
 				resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id)
 					resurrect.state_manager.delete_state(id)

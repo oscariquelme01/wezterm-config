@@ -1,54 +1,49 @@
 local wezterm = require("wezterm")
+local utils = require("utils")
+
+local mod = utils.mod
 
 local M = {}
 
 function M.apply(config)
 	config.keys = {
-		-- Cmd+V to split vertically
+		-- Split vertically
 		{
 			key = "v",
-			mods = "CMD",
+			mods = mod,
 			action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 		},
-		-- CMD+X to split horizontally (I know, names are backward)
+		-- Split horizontally (I know, names are backward)
 		{
 			key = "x",
-			mods = "CMD",
+			mods = mod,
 			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 		},
-		-- CMD h,j,k,l to navigate panes
+		-- h,j,k,l to navigate panes
 		{
 			key = "h",
-			mods = "CMD",
+			mods = mod,
 			action = wezterm.action.ActivatePaneDirection("Left"),
 		},
 		{
 			key = "j",
-			mods = "CMD",
+			mods = mod,
 			action = wezterm.action.ActivatePaneDirection("Down"),
 		},
 		{
 			key = "k",
-			mods = "CMD",
+			mods = mod,
 			action = wezterm.action.ActivatePaneDirection("Up"),
 		},
 		{
 			key = "l",
-			mods = "CMD",
+			mods = mod,
 			action = wezterm.action.ActivatePaneDirection("Right"),
 		},
-		-- CMD + w to fuzzy search workspaces
+		-- Create a new workspace
 		{
 			key = "w",
-			mods = "CMD",
-			action = wezterm.action.ShowLauncherArgs({
-				flags = "FUZZY|WORKSPACES",
-			}),
-		},
-		-- CMD + SHIFT + w to create a new workspace
-		{
-			key = "w",
-			mods = "CMD|SHIFT",
+			mods = mod .. "|SHIFT",
 			action = wezterm.action.PromptInputLine({
 				description = "Enter name for new workspace",
 				action = wezterm.action_callback(function(window, pane, line)
@@ -60,7 +55,7 @@ function M.apply(config)
 		},
 		{
 			key = "t",
-			mods = "CMD|SHIFT",
+			mods = mod .. "|SHIFT",
 			action = wezterm.action.PromptInputLine({
 				description = "Enter new tab name",
 				action = wezterm.action_callback(function(window, pane, line)
@@ -70,10 +65,10 @@ function M.apply(config)
 				end),
 			}),
 		},
-		-- Rename paste to CMD + p
+		-- Paste from clipboard
 		{
 			key = "p",
-			mods = "CMD",
+			mods = mod,
 			action = wezterm.action.PasteFrom("Clipboard"),
 		},
 	}

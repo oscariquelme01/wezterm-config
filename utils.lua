@@ -1,4 +1,10 @@
+local wezterm = require("wezterm")
+
+local is_mac = wezterm.target_triple:find("darwin") ~= nil
+
 local M = {}
+
+M.mod = is_mac and "CMD" or "CTRL"
 
 function M.add_keys(config, keys)
 	for _, k in ipairs(keys) do

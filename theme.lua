@@ -19,7 +19,7 @@ function M.apply(config)
 	-- Change inactive pane brightness
 	config.inactive_pane_hsb = {
 		saturation = 0.9,
-		brightness = 0.5,
+		brightness = 0.7,
 	}
 
 	-- Explicit font variants (bold, italic, bold italic)
