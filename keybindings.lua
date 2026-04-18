@@ -16,6 +16,7 @@ function M.apply(config)
 			mods = "CMD",
 			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 		},
+		-- CMD h,j,k,l to navigate panes
 		{
 			key = "h",
 			mods = "CMD",
@@ -36,6 +37,7 @@ function M.apply(config)
 			mods = "CMD",
 			action = wezterm.action.ActivatePaneDirection("Right"),
 		},
+		-- CMD + w to fuzzy search workspaces
 		{
 			key = "w",
 			mods = "CMD",
@@ -43,6 +45,7 @@ function M.apply(config)
 				flags = "FUZZY|WORKSPACES",
 			}),
 		},
+		-- CMD + SHIFT + w to create a new workspace
 		{
 			key = "w",
 			mods = "CMD|SHIFT",
@@ -54,6 +57,36 @@ function M.apply(config)
 					end
 				end),
 			}),
+		},
+		{
+			key = "t",
+			mods = "CMD|ALT",
+			action = wezterm.action.PromptInputLine({
+				description = "Enter new tab name",
+				action = wezterm.action_callback(function(window, pane, line)
+					if line then
+						window:active_tab():set_title(line)
+					end
+				end),
+			}),
+		},
+		-- Press Ctrl+Shift+Alt+W to rename the current workspace
+		{
+			key = "w",
+			mods = "CMD|ALT",
+			action = wezterm.action.PromptInputLine({
+				description = "Enter new workspace name",
+				action = wezterm.action_callback(function(window, pane, line)
+					if line then
+						wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
+					end
+				end),
+			}),
+		},
+		{
+			key = "p",
+			mods = "CMD",
+			action = wezterm.action.PasteFrom("Clipboard"),
 		},
 	}
 end
