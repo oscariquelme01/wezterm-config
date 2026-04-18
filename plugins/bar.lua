@@ -18,8 +18,8 @@ function M.apply(config)
 		},
 		modules = {
 			tabs = {
-				active_tab_fg = 4, -- index into ansi/brights palette
-				inactive_tab_fg = 6,
+				active_tab_fg = 3, -- index into ansi/brights palette
+				inactive_tab_fg = 9,
 			},
 			workspace = {
 				enabled = true,
@@ -32,9 +32,7 @@ function M.apply(config)
 				color = 2,
 			},
 			pane = {
-				enabled = true,
-				icon = wezterm.nerdfonts.cod_multiple_windows,
-				color = 7,
+				enabled = false,
 			},
 			username = {
 				enabled = false,
