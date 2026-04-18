@@ -41,15 +41,28 @@ function M.apply(config)
 				enabled = false,
 			},
 			clock = {
-				enabled = true,
-				icon = wezterm.nerdfonts.md_calendar_clock,
-				color = 5,
+				enabled = false,
 			},
 			cwd = {
 				enabled = false,
 			},
 		},
 	})
+
+	-- COPY MODE status bar
+	wezterm.on('update-status', function(window, pane)
+		local key_table = window:active_key_table()
+		if key_table == 'copy_mode' or key_table == 'search_mode' then
+			window:set_right_status(wezterm.format {
+				{ Background = { AnsiColor = 'Black' } },
+				{ Foreground = { AnsiColor = 'Red' } },
+				{ Attribute = { Intensity = 'Bold' } },
+				{ Text = ' ' .. string.upper(key_table:gsub('_', ' ')) .. ' ' },
+			})
+		else
+			window:set_right_status('')
+		end
+	end)
 end
 
 return M

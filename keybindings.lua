@@ -71,6 +71,17 @@ function M.apply(config)
 			mods = mod,
 			action = wezterm.action.PasteFrom("Clipboard"),
 		},
+		-- Enter copy mode
+		{
+			key = "c",
+			mods = mod,
+			action = wezterm.action.ActivateCopyMode
+		},
+		{
+			key = "z",
+			mods = mod,
+			action = wezterm.action.QuickSelect
+		}
 	}
 end
 
