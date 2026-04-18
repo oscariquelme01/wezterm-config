@@ -34,7 +34,7 @@ function M.apply(config)
 	utils.add_keys(config, {
 		{
 			key = "s",
-			mods = utils.mod .. "|SHIFT",
+			mods = utils.mod .. "|ALT",
 			action = wezterm.action_callback(function(win, pane)
 				local ws = wezterm.mux.get_active_workspace()
 				wezterm.log_info("resurrect: manually saving workspace " .. ws)
@@ -44,7 +44,7 @@ function M.apply(config)
 		},
 		{
 			key = "r",
-			mods = utils.mod .. "|SHIFT",
+			mods = utils.mod .. "|ALT",
 			action = wezterm.action_callback(function(win, pane)
 				resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)
 					local type = string.match(id, "^([^/]+)")
@@ -92,7 +92,7 @@ function M.apply(config)
 		},
 		{
 			key = "d",
-			mods = utils.mod .. "|SHIFT",
+			mods = utils.mod .. "|ALT",
 			action = wezterm.action_callback(function(win, pane)
 				resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id)
 					resurrect.state_manager.delete_state(id)
